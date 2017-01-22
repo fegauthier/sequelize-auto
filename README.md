@@ -30,7 +30,7 @@ Example for MSSQL
 
 ## Usage
 
-    [node] sequelize-auto -h <host> -d <database> -u <user> -x [password] -p [port]  --dialect [dialect] -c [/path/to/config] -o [/path/to/models] -t [tableName]
+    [node] sequelize-auto -h <host> -d <database> -u <user> -x [password] -p [port]  --dialect [dialect] -c [/path/to/config] -o [/path/to/models] -t [tableName] -C
 
     Options:
       -h, --host        IP/Hostname for the database.   [required]
@@ -43,6 +43,7 @@ Example for MSSQL
       -e, --dialect     The dialect/engine that you're using: postgres, mysql, sqlite
       -a, --additional  Path to a json file containing model definitions (for all tables) which are to be defined within a model's configuration parameter. For more info: https://sequelize.readthedocs.org/en/latest/docs/models-definition/#configuration
       -t, --tables      Comma-separated names of tables to import
+      -C, --camel       Use camel case to name models and fields
 
 
 ## Example
@@ -129,6 +130,19 @@ auto.run(function (err) {
   console.log(auto.tables); // table list
   console.log(auto.foreignKeys); // foreign key list
 });
+
+With options: 
+var auto = new SequelizeAuto('database', 'user', 'pass', {
+    host: 'localhost',
+    dialect: 'mysql'|'mariadb'|'sqlite'|'postgres'|'mssql',
+    port: 'port',
+    additional: {
+        timestamps: false
+        //...
+    },
+    tables: ['table1', 'table2', 'table3']
+    //...
+})
 ```
 
 ## Testing
